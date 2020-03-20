@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jimi.display.controller.TaskController">
+   <children>
+      <TabPane layoutY="-8.0" prefHeight="474.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="点到点">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" onDragDetected="#onResetClick" prefHeight="431.0" prefWidth="818.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="58.0" prefHeight="34.0" prefWidth="92.0" text="起始点：" />
+                        <Label layoutX="336.0" layoutY="63.0" prefHeight="25.0" prefWidth="62.0" text="终点：" />
+                        <TextField fx:id="startTf" layoutX="106.0" layoutY="58.0" prefHeight="40.0" prefWidth="190.0" />
+                        <TextField fx:id="endTf" layoutX="413.0" layoutY="58.0" prefHeight="40.0" prefWidth="190.0" />
+                        <Button fx:id="btnSure" layoutX="675.0" layoutY="55.0" mnemonicParsing="false" onAction="#onSendClick" prefHeight="40.0" prefWidth="86.0" text="确定" />
+                        <TextArea fx:id="responseTa" editable="false" layoutX="17.0" layoutY="140.0" prefHeight="173.0" prefWidth="586.0" promptText="结果显示" wrapText="true" />
+                        <Label fx:id="tipLb" layoutX="17.0" layoutY="109.0" prefHeight="41.0" prefWidth="610.0" />
+                        <Button fx:id="reset" layoutX="675.0" layoutY="129.0" mnemonicParsing="false" onAction="#onResetClick" prefHeight="43.0" prefWidth="85.0" text="重置" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
