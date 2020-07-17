@@ -1,8 +1,10 @@
 package cc.darhao.undertow_demo.web;
 
 import cc.darhao.pasta.Pasta;
+import cc.darhao.undertow_demo.config.DataSourceConfig;
 import cc.darhao.undertow_demo.constant.SystemProperties;
 import cc.darhao.undertow_demo.controller.ChatController;
+import cc.darhao.undertow_demo.thread.quartz.RecordSaveSchedule;
 import cc.darhao.undertow_demo.util.PropUtil;
 import cc.darhao.undertow_demo.web.ws.ChatSocket;
 import cc.darhao.undertow_demo.web.ws.handler.ChatHandler;
@@ -14,7 +16,7 @@ import com.jfinal.template.Engine;
 public class UndertowBoot extends JFinalConfig {
 
     private UndertowServer undertowServer;
-
+    private DataSourceConfig dataSourceConfig = new DataSourceConfig();
 
     public void start() {
         //配置Pasta
@@ -33,8 +35,12 @@ public class UndertowBoot extends JFinalConfig {
         undertowServer.start();
     }
 
-    public void stop(){
-        undertowServer.stop();
+    @Override
+    public void onStop(){
+        //关闭定时线程
+        RecordSaveSchedule.stop();
+        //关闭数据源插件
+        dataSourceConfig.shutdown();
     }
 
     @Override

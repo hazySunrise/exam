@@ -28,10 +28,8 @@ public class Main implements SignalHandler {
 		undertowBoot.start();
 
 		//开启定时器
-		RecordSaveSchedule.run();
+		RecordSaveSchedule.start();
 
-		//配置Pasta
-		//...
 		
 		//开启Netty
 		//...
@@ -46,15 +44,8 @@ public class Main implements SignalHandler {
 		try {
 			//打印Log4j2（如果日志写到数据库，一定要在数据源关闭前打印）
 			//...
-			
-			//关闭定时线程
-			RecordSaveSchedule.stop();
-			
-			//关闭Web服务器
-			undertowBoot.stop();
-			
-			//关闭数据源插件
-			dataSourceConfig.shutdown();
+
+
 			
 			System.out.println("程序正常结束");
 		} catch (Exception e){

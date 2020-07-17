@@ -18,12 +18,12 @@ public class SessionBox {
 	private static final Map<String, Session> sessionMap = new HashMap<>();
 
 	
-	public static synchronized Session getSessionByName(String name) {
+	public static Session getSessionByName(String name) {
 		return sessionMap.get(name);
 	}
 	
 	
-	public static synchronized String getNameBySession(Session session) {
+	public static String getNameBySession(Session session) {
 		for (Entry<String, Session> sessionEntry : sessionMap.entrySet()) {
 			if(sessionEntry.getValue().equals(session)) {
 				return sessionEntry.getKey();
@@ -33,18 +33,19 @@ public class SessionBox {
 	}
 	
 	
-	public static synchronized void addSession(String name, Session session) {
+	public static void addSession(String name, Session session) {
 		sessionMap.put(name, session);
 	}
 	
 	
-	public static synchronized void removeSession(Session session) {
+	public static void removeSession(Session session) {
 		sessionMap.remove(getNameBySession(session));
 	}
 
 
-	public static synchronized void send( String nickName,String message) {
-		for (Entry<String, Session> sessionEntry : sessionMap.entrySet()) {
+	public static void send( String nickName,String message) {
+		Map<String, Session> map = new HashMap<>(sessionMap);
+		for (Entry<String, Session> sessionEntry : map.entrySet()) {
 			if (!sessionEntry.getKey().equals(nickName) && sessionEntry.getValue().isOpen()) {
 				try {
 					sessionEntry.getValue().getBasicRemote().sendText(message);
